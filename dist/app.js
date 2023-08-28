@@ -18,7 +18,7 @@ const compression_1 = __importDefault(require("compression"));
 const dotenv_1 = require("dotenv");
 (0, dotenv_1.config)();
 /** Connect DB */
-const connect_db_1 = require("../src/db/connect-db");
+const connect_db_1 = require("./db/connect-db");
 /** Extra Security */
 const express_rate_limit_1 = __importDefault(require("express-rate-limit"));
 const helmet_1 = __importDefault(require("helmet"));

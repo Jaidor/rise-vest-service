@@ -13,7 +13,7 @@ import { config } from 'dotenv';
 config();
 
 /** Connect DB */
-import { connectDB } from '../src/db/connect-db';
+import { connectDB } from './db/connect-db';
 
 /** Extra Security */
 import rateLimiter from 'express-rate-limit';
