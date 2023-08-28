@@ -8,7 +8,7 @@
     "build": "tsc",
     "predev": "npm run build",
     "dev": "nodemon ./src/app.ts",
-    "prestart": "npm run build",
+    "postinstall": "npm run build",
     "start": "node ./dist/app.js"
   },
   "keywords": [],
