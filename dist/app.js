@@ -19,7 +19,7 @@ const compression_1 = __importDefault(require("compression"));
 const dotenv_1 = require("dotenv");
 (0, dotenv_1.config)();
 /** Connect DB */
-// import { connectDB } from './db/connect-db';
+const connect_db_1 = require("./db/connect-db");
 /** Extra Security */
 const express_rate_limit_1 = __importDefault(require("express-rate-limit"));
 const helmet_1 = __importDefault(require("helmet"));
@@ -75,11 +75,11 @@ app.use(not_found_1.notFound);
 app.use(error_handler_1.errorHandler);
 /** Error Handler */
 const server = http_1.default.createServer(app);
-const PORT = Number(process.env.APP_PORT) || 3000;
+const PORT = Number(process.env.PORT) || 3000;
 const start = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        // await connectDB();
-        server.listen(process.env.APP_PORT || 3000, () => {
+        yield (0, connect_db_1.connectDB)();
+        server.listen(process.env.PORT || 3000, () => {
             console.log(`🚀 🚀 🚀 Server is listening on port ${PORT}...`);
         });
     }
@@ -88,6 +88,3 @@ const start = () => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 start();
-// npm install -D supertest @types/supertest
-// npm install _D jest ts-jest @types/jest
-// npx ts-jest config:init

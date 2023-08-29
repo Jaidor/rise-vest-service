@@ -13,7 +13,7 @@ import { config } from 'dotenv';
 config();
 
 /** Connect DB */
-// import { connectDB } from './db/connect-db';
+import { connectDB } from './db/connect-db';
 
 /** Extra Security */
 import rateLimiter from 'express-rate-limit';
@@ -83,7 +83,7 @@ const server = http.createServer(app);
 const PORT: Number = Number(process.env.PORT) || 3000;
 const start = async () => {
     try {
-        // await connectDB();
+        await connectDB();
         server.listen(process.env.PORT || 3000, () => {
             console.log(`🚀 🚀 🚀 Server is listening on port ${PORT}...`)
         });
