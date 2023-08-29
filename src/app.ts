@@ -80,11 +80,11 @@ app.use(errorHandler);
 
 
 const server = http.createServer(app);
-const PORT: Number = Number(process.env.APP_PORT) || 3000;
+const PORT: Number = Number(process.env.PORT) || 3000;
 const start = async () => {
     try {
         // await connectDB();
-        server.listen(process.env.APP_PORT || 3000, () => {
+        server.listen(process.env.PORT || 3000, () => {
             console.log(`🚀 🚀 🚀 Server is listening on port ${PORT}...`)
         });
     } catch (error) {
@@ -93,9 +93,3 @@ const start = async () => {
 }
 
 start();
-
-// npm install -D supertest @types/supertest
-
-// npm install _D jest ts-jest @types/jest
-
-// npx ts-jest config:init
