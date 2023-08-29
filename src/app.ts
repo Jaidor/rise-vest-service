@@ -13,7 +13,7 @@ import { config } from 'dotenv';
 config();
 
 /** Connect DB */
-// import { connectDB } from '../src/db/connect-db';
+// import { connectDB } from './db/connect-db';
 
 /** Extra Security */
 import rateLimiter from 'express-rate-limit';
@@ -26,7 +26,8 @@ import router from './routes';
 /** Routers */
 
 /** Middleware Error Handler */
-import { notFound} from './middleware/not-found';
+import { notFound } from './middleware/not-found';
+import { errorHandler } from './middleware/error-handler';
 /** Middleware Error Handler */
 
 /** App Use */
@@ -74,6 +75,7 @@ app.use('/', router())
 
 /** Error Handler */
 app.use(notFound);
+app.use(errorHandler);
 /** Error Handler */
 
 
@@ -82,12 +84,18 @@ const PORT: Number = Number(process.env.APP_PORT) || 3000;
 const start = async () => {
     try {
         // await connectDB();
-        server.listen(PORT, () => {
+        server.listen(process.env.APP_PORT || 3000, () => {
             console.log(`🚀 🚀 🚀 Server is listening on port ${PORT}...`)
-        })
+        });
     } catch (error) {
         console.log(error)
     }
 }
 
 start();
+
+// npm install -D supertest @types/supertest
+
+// npm install _D jest ts-jest @types/jest
+
+// npx ts-jest config:init
