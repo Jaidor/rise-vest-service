@@ -6,14 +6,14 @@ import express, {
     ErrorRequestHandler
  } from 'express';
 
-import { Server } from 'http';
+import http from 'http';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import { config } from 'dotenv';
 config();
 
 /** Connect DB */
-// import { connectDB } from './db/connect-db';
+// import { connectDB } from '../src/db/connect-db';
 
 /** Extra Security */
 import rateLimiter from 'express-rate-limit';
@@ -77,11 +77,12 @@ app.use(notFound);
 /** Error Handler */
 
 
+const server = http.createServer(app);
 const PORT: Number = Number(process.env.APP_PORT) || 3000;
 const start = async () => {
     try {
         // await connectDB();
-        const server: Server = app.listen(PORT, () => {
+        server.listen(PORT, () => {
             console.log(`🚀 🚀 🚀 Server is listening on port ${PORT}...`)
         })
     } catch (error) {
