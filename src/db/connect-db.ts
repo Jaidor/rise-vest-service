@@ -8,7 +8,8 @@ export const connectDB = async () => {
         user: process.env.DB_USER,
         password: process.env.DB_PASS,
         database: process.env.DB_NAME,
-        ssl: false,
+        // ssl: false,
+        ssl: { rejectUnauthorized: false }
     });
     await DB.connect();
     const res = await DB.query('SELECT $1::text as connected', ['Connected to postgres successful!']);
