@@ -1,12 +1,30 @@
 version: "3.4"
 
-
-
-service:
-  rise:
-    build:
-      context: -
-      target:
-
-      ports: 
+services:
+  risevest:
+    container_name: risevest
+    image: jideola/risevest:1.0.0
+    build: .
+    ports:
       - 8000:8000
+    environment:
+      - DB_TYPE=prostgres
+      - DB_HOST=db
+      - DB_USER=prostgres
+      - DB_PASSWORD=Qwerty12345!!!
+      - DB_NAME=risevest
+      - DB_PORT=5432
+    depends_on:
+      - db
+  db:
+    container_name: db
+    image: prostgres:10
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Qwerty12345!!!
+    volumes: 
+      - pgdata:var/lib/postgresql/data
+volumes:
+  pgdata: {}

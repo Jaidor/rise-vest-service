@@ -18,7 +18,8 @@ const connectDB = () => __awaiter(void 0, void 0, void 0, function* () {
         user: process.env.DB_USER,
         password: process.env.DB_PASS,
         database: process.env.DB_NAME,
-        ssl: false,
+        // ssl: { rejectUnauthorized: false }
+        ssl: false
     });
     yield DB.connect();
     const res = yield DB.query('SELECT $1::text as connected', ['Connected to postgres successful!']);
